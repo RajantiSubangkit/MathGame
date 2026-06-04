@@ -88,11 +88,44 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-user_answer = st.number_input(
-    "Jawabanmu",
-    step=0.1,
-    format="%.1f"
-)
+if "selected_answer" not in st.session_state:
+    st.session_state.selected_answer = None
+
+if level == "Rasasti":
+
+    st.write("Pilih jawaban:")
+
+    numbers = list(range(1, 21))
+
+    for row in range(2):
+
+        cols = st.columns(10)
+
+        for col in range(10):
+
+            num = numbers[row * 10 + col]
+
+            with cols[col]:
+                if st.button(
+                    str(num),
+                    key=f"btn_{num}"
+                ):
+                    st.session_state.selected_answer = num
+
+    user_answer = st.session_state.selected_answer
+
+    if user_answer is not None:
+        st.success(
+            f"Pilihan: {user_answer}"
+        )
+
+else:
+
+    user_answer = st.number_input(
+        "Jawabanmu",
+        step=0.1,
+        format="%.1f"
+    )
 
 col1, col2 = st.columns(2)
 
