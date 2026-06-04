@@ -269,7 +269,7 @@ if level == "Rasasti":
                 <div style="
                 border:1px solid gray;
                 text-align:center;
-                padding:14px;
+                padding:10px;
                 {cell_style}
                 ">
                 {value}
