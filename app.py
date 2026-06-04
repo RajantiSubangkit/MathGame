@@ -33,6 +33,13 @@ if "questions_answered" not in st.session_state:
 if "selected_answer" not in st.session_state:
     st.session_state.selected_answer = None
 
+# untuk Addition Table interaktif
+if "selected_row" not in st.session_state:
+    st.session_state.selected_row = None
+
+if "selected_col" not in st.session_state:
+    st.session_state.selected_col = None
+
 # =========================
 # LEVEL
 # =========================
@@ -165,79 +172,112 @@ if level == "Rasasti":
 
     with right:
 
-        st.subheader("📘 Tabel Penjumlahan")
-
+        st.subheader("📘 Tabel Penjumlahan Interaktif")
+    
         html = """
         <style>
-
         table{
             border-collapse:collapse;
             margin:auto;
         }
-
-        td,th{
-            border:1px solid #555;
-            width:42px;
-            height:42px;
+    
+        td{
+            border:1px solid #444;
+            width:40px;
+            height:40px;
             text-align:center;
             font-size:18px;
         }
-
-        .header{
+    
+        .head{
             background:#bdf5a7;
             font-weight:bold;
         }
-
-        .selected{
+    
+        .rowselected{
+            background:#7ee081;
+            font-weight:bold;
+        }
+    
+        .colselected{
+            background:#7ee081;
+            font-weight:bold;
+        }
+    
+        .answer{
             background:yellow;
             font-weight:bold;
-            font-size:22px;
+            font-size:24px;
         }
-
         </style>
-
-        <table>
         """
-
-        html += "<tr><th>+</th>"
-
-        for c in range(1, 11):
-            html += f"<th class='header'>{c}</th>"
-
-        html += "</tr>"
-
-        for r in range(1, 11):
-
-            html += f"<tr><th class='header'>{r}</th>"
-
-            for c in range(1, 11):
-
-                value = r + c
-
-                if (
-                    st.session_state.selected_answer
-                    is not None
-                    and
-                    value == st.session_state.selected_answer
+    
+        # Header kolom
+        cols = st.columns(11)
+    
+        cols[0].write("➕")
+    
+        for c in range(1,11):
+    
+            with cols[c]:
+    
+                if st.button(
+                    str(c),
+                    key=f"col_{c}"
                 ):
-
-                    html += (
-                        f"<td class='selected'>{value}</td>"
+                    st.session_state.selected_col = c
+    
+        # Baris tabel
+    
+        for r in range(1,11):
+    
+            cols = st.columns(11)
+    
+            with cols[0]:
+    
+                if st.button(
+                    str(r),
+                    key=f"row_{r}"
+                ):
+                    st.session_state.selected_row = r
+    
+            for c in range(1,11):
+    
+                value = r + c
+    
+                cell_style = ""
+    
+                if (
+                    r == st.session_state.selected_row and
+                    c == st.session_state.selected_col
+                ):
+                    cell_style = (
+                        "background:yellow;"
+                        "font-weight:bold;"
+                        "font-size:24px;"
                     )
-
-                else:
-
-                    html += f"<td>{value}</td>"
-
-            html += "</tr>"
-
-        html += "</table>"
-
-        st.markdown(
-            html,
-            unsafe_allow_html=True
-        )
-
+    
+                elif (
+                    r == st.session_state.selected_row or
+                    c == st.session_state.selected_col
+                ):
+                    cell_style = (
+                        "background:#bdf5a7;"
+                    )
+    
+                cols[c].markdown(
+                    f"""
+                    <div style="
+                    border:1px solid gray;
+                    text-align:center;
+                    padding:8px;
+                    {cell_style}
+                    ">
+                    {value}
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
 # =========================
 # RINJANI & RAJANTI
 # =========================
