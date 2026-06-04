@@ -267,15 +267,15 @@ if level == "Rasasti":
     
                 cols[c].markdown(
                     f"""
-                    <div style="
-                    border:1px solid gray;
-                    text-align:center;
-                    padding:8px;
-                    {cell_style}
-                    ">
-                    {value}
-                    </div>
-                    """,
+                <div style='
+                border:1px solid gray;
+                text-align:center;
+                padding:8px;
+                {cell_style}
+                '>
+                {value}
+                </div>
+                """,
                     unsafe_allow_html=True
                 )
 # =========================
