@@ -38,7 +38,7 @@ def generate_question(level):
     if level == "Rasasti":
         a = random.randint(1, 10)
         b = random.randint(1, 10)
-        op = random.choice(["+", "-"])
+        op = random.choice(["+"])
 
     elif level == "Rinjani":
         a = random.randint(10, 50)
