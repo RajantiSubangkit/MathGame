@@ -271,7 +271,7 @@ if level == "Rasasti":
                 text-align:center;
                 padding:8px;
                 {cell_style}
-                ">
+                
                 {value}
                 </div>
                 """
