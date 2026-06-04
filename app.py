@@ -30,17 +30,17 @@ if "questions_answered" not in st.session_state:
 # Pilih level
 level = st.selectbox(
     "Pilih Level",
-    ["Mudah", "Sedang", "Sulit"]
+    ["Rasasti", "Rinjani", "Rajanti"]
 )
 
 def generate_question(level):
 
-    if level == "Mudah":
+    if level == "Rasasti":
         a = random.randint(1, 10)
         b = random.randint(1, 10)
         op = random.choice(["+", "-"])
 
-    elif level == "Sedang":
+    elif level == "Rinjani":
         a = random.randint(10, 50)
         b = random.randint(1, 20)
         op = random.choice(["+", "-", "*"])
