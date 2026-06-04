@@ -265,17 +265,19 @@ if level == "Rasasti":
                         "background:#bdf5a7;"
                     )
     
-                cols[c].markdown(
-                    f"""
-                <div style='
+                cell_html = f"""
+                <div style="
                 border:1px solid gray;
                 text-align:center;
                 padding:8px;
                 {cell_style}
-                '>
+                ">
                 {value}
                 </div>
-                """,
+                """
+                
+                cols[c].markdown(
+                    cell_html,
                     unsafe_allow_html=True
                 )
 # =========================
