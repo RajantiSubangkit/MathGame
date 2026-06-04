@@ -3,12 +3,12 @@ import random
 import time
 
 st.set_page_config(
-    page_title="Math Adventure",
+    page_title="3Rs MATH",
     page_icon="🧮",
     layout="centered"
 )
 
-st.title("🧮 Math Adventure")
+st.title("🧮 3Rs MATH")
 st.write("Jawab sebanyak mungkin soal matematika!")
 
 # Inisialisasi session state
